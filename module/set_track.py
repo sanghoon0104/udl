@@ -1,3 +1,4 @@
+
 from pytube import Playlist  , YouTube
 import glob , os
 import os.path
@@ -16,7 +17,9 @@ def playlistdownload() :
         fpath = os.getcwd()
         files = glob.glob(fpath + '/*.mp4')  # .mp4 files only
         print(files)
+        i = int(0)
         for file in files:
+            i =+ 1
             mfile = meditor.VideoFileClip(file)
             filename = os.path.splitext(file)
             mfile.audio.write_audiofile(filename[0] + '.mp3')
@@ -28,6 +31,10 @@ def playlistdownload() :
             response = urllib.request.urlopen(video.thumbnail_url)
             imagedata = response.read()
             audiofile.tag.images.set(3, imagedata, "image/jpeg", u"cover")
+            audiofile.tag.artist = u"Kanye West"
+            audiofile.tag.album = u"The life of Pablo"
+            audiofile.tag.album_artist = u"Kanye West"
+            audiofile.tag.track_num = i
             audiofile.tag.save()
             print("success")
 
@@ -58,4 +65,3 @@ def videodown() :
             print('success')
 
 playlistdownload()
-#videodown()
