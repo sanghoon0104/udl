@@ -57,5 +57,8 @@ def videodown() :
             audiofile.tag.save()
             print('success')
 
-playlistdownload()
-#videodown()
+a = int(input('재생목록 다운로드 1번 아니면 2번: '))
+if a == 1 :
+    playlistdownload()
+else:
+    videodown()
